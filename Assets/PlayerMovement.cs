@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private float Move;
-
     public float jump;
-
     public bool isJumping;
 
     private Rigidbody2D rb;
@@ -42,5 +41,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         isJumping = true;
+    }
+
+    public static implicit operator PlayerMovement(bool v)
+    {
+        throw new NotImplementedException();
     }
 }
