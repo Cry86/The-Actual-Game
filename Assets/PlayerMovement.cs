@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float Move;
     public float jump;
     public bool isJumping;
-
+    public CoinManager cm;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -46,5 +46,13 @@ public class PlayerMovement : MonoBehaviour
     public static implicit operator PlayerMovement(bool v)
     {
         throw new NotImplementedException();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            cm.coinCount++;
+        }
     }
 }
