@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public CoinManager cm;
     private Rigidbody2D rb;
+    public int jumpMultiplier = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isJumping == false)
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
+            rb.AddForce(new Vector2(rb.velocity.x, jump * jumpMultiplier));
         }
     }
 
@@ -47,12 +49,19 @@ public class PlayerMovement : MonoBehaviour
     {
         throw new NotImplementedException();
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Coin"))
         {
             cm.coinCount++;
+        }
+        if (other.gameObject.CompareTag("Boost"))
+        {
+            jumpMultiplier += 1;
+            if (jumpMultiplier > 2)
+            {
+                jumpMultiplier = 2;
+            }
         }
     }
 }

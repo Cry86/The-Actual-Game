@@ -8,6 +8,8 @@ public class DeathScript : MonoBehaviour
     public GameObject Player;       // The player object
     private Vector3 respawnPoint;   // Keeps track of the player's respawn point
 
+    public int maxHealth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class DeathScript : MonoBehaviour
         {
             // Reset player's position to the last checkpoint (or start point if no checkpoint was triggered)
             Player.transform.position = respawnPoint;
+            maxHealth -= 1;
         }
     }
 

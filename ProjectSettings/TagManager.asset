@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Weak point
   - Weak Point
+  - Boost
   layers:
   - Default
   - TransparentFX
